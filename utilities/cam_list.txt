@@ -1,0 +1,9 @@
+Model                          Port            
+----------------------------------------------------------
+USB PTP Class Camera           usb:011,010     
+USB PTP Class Camera           usb:011,011     
+USB PTP Class Camera           usb:011,009     
+USB PTP Class Camera           usb:011,008     
+USB PTP Class Camera           usb:011,007     
+USB PTP Class Camera           usb:011,005     
+USB PTP Class Camera           usb:011,004     

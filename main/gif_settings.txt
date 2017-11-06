@@ -1,0 +1,8 @@
+delay=20
+loop=0
+patrol_cycle_gif=1
+in_between=0
+quality=100
+freeze=1
+d_delay=
+.
