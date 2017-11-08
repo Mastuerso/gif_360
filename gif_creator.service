@@ -3,8 +3,8 @@ Description=Gif Creator service
 [Service]
 Type=oneshot
 User=onikom
-WorkingDirectory=/home/onikom/Gif_Creator/main/
-ExecStart=/home/onikom/Gif_Creator/main/start_process.sh
+WorkingDirectory=/home/onikom/gif_360/main/
+ExecStart=/home/onikom/gif_360/main/start_process.sh
 SyslogIdentifier=GifCreator
 [Install]
 WantedBy=multi-user.target
