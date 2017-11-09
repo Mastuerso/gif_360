@@ -112,7 +112,8 @@ if [ $img_count -gt $((0)) ]; then
         fi    
     fi
     if [ ${gif_settings[$((9))]} -eq $((1)) ]; then
-        convert "$w_dir/$gifname.gif" -coalesce null: ${gif_settings[$((10))]} -gravity center -layers composite "$w_dir/b$gifname.gif"
+        bash "$w_dir/fit_wmark.sh"
+        convert "$w_dir/$gifname.gif" -coalesce null: "$w_dir/watermark.png" -gravity center -layers composite "$w_dir/b$gifname.gif"
         rm "$w_dir/$gifname.gif"
         mv "$w_dir/b$gifname.gif" "$w_dir/$gifname.gif"
     fi
