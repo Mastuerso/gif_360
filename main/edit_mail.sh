@@ -1,6 +1,13 @@
 #!/bin/bash
 
+#check if send mail is required
 wdir=$(pwd)
+isMailReq=$(sed '8q;d' "$wdir/gif_settings.txt")
+isMailReq=${isMailReq:6}
+if [ $isMailReq -eq $((0)) ]; then
+echo "email not required"
+else
+echo "Sending email ..."
 sendmail_file="/var/www/html/gif_360_web/server/send_mail.php"
 
 #get recipient mail
@@ -29,3 +36,4 @@ sed -i $attch_line $sendmail_file
 echo "Sending mail ..."
 #cat $sendmail_file
 php $sendmail_file
+fi
