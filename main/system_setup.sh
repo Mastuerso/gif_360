@@ -25,6 +25,7 @@ function animate {
     capturetargetSD
     echo "Animating Gif"
     bash "$dir/animator.sh"
+    bash "$dir/edit_mail.sh"
     capture_images=true    
 }
 

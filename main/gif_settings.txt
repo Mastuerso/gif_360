@@ -1,8 +1,13 @@
 delay=20
 loop=0
-patrol_cycle_gif=1
+patrol_cycle_gif=0
 in_between=0
 quality=100
 freeze=1
-d_delay=
+d_delay=10
+email=1
+mailto=antonio.credoz@gmail.com
+watermark=1
+wmark=/home/onikom/Pictures/Naruto_family.png
+fb_post=0
 .

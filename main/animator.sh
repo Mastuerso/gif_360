@@ -7,14 +7,13 @@ file="$w_dir/image_list.txt"
 
 img_count=$((0))
 count=$((0))
-gifname=$(date +"%e%b-%R")
+gifname=$(date +"%b%d-%H%M")
+echo $gifname >gif_name.txt
 #echo "gif name: $gifname"
 nu_delay=$((0))
 
 ls "$(pwd)/images">"$(pwd)/image_list.txt"
 echo <"$(pwd)/image_list.txt"
-
-
 
 while IFS= read line
 do    
@@ -63,6 +62,10 @@ if [ $img_count -gt $((0)) ]; then
                 line=${line:8}                
                 #echo "quality $line"
                 #exit
+            elif [ $count -eq $((9)) ]; then
+                line=${line:10}
+            elif [ $count -eq $((10)) ]; then
+                line=${line:6}
             fi
             gif_settings[$count]=$line
             #echo "${gif_settings[$count]}"
@@ -77,7 +80,7 @@ if [ $img_count -gt $((0)) ]; then
     if [ ${gif_settings[$((2))]} -eq $((0)) ]; then
         echo "patrol cycle not needed"
         if [ ${gif_settings[$((3))]} -eq $((0)) ]; then
-            echo "in_betweens not requested"            
+            echo "in_betweens not requested"
             #convert "$(pwd)/images/*.JPG" -delay ${gif_settings[$((0))]} -loop ${gif_settings[$((1))]} "$w_dir/$gifname.gif"
             convert -delay ${gif_settings[$((0))]} "$(pwd)/images/*.JPG" -loop ${gif_settings[$((1))]} "$w_dir/$gifname.gif"
         fi
@@ -108,10 +111,16 @@ if [ $img_count -gt $((0)) ]; then
             mv "$w_dir/b$gifname.gif" "$w_dir/$gifname.gif"
         fi    
     fi
+    if [ ${gif_settings[$((9))]} -eq $((1)) ]; then
+        bash "$w_dir/fit_wmark.sh"
+        convert "$w_dir/$gifname.gif" -coalesce null: "$w_dir/watermark.png" -gravity center -layers composite "$w_dir/b$gifname.gif"
+        rm "$w_dir/$gifname.gif"
+        mv "$w_dir/b$gifname.gif" "$w_dir/$gifname.gif"
+    fi
     #mv "$w_dir/$gifname.gif" "/home/onikom/Pictures/$gifname.gif"
-    echo "gif ready"    
+    echo "gif ready"
 else
-    echo "Where are the images?"    
+    echo "Where are the images?"
 fi
 
 file="$w_dir/results.txt"
@@ -126,6 +135,7 @@ while [[ "$box_ready" == false ]]; do
         box_ready=false
     fi    
 done
-echo "Box Ready"
+echo -e "Box Ready\n"
 mv "$w_dir/$gifname.gif" "/home/onikom/Pictures/$gifname.gif"
+echo $gifname
 #sleep 5
