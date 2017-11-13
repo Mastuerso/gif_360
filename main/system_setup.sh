@@ -27,6 +27,7 @@ function animate {
     #bash "$dir/animator.sh"
     bash "$dir/do_video.sh"
     bash "$dir/edit_mail.sh"
+    bash "$dir/fbk_mnger.sh"
     capture_images=true    
 }
 
@@ -47,7 +48,7 @@ function take_pics {
             i=${cam_list[$count]}
             count=$(( count + 1 ))            
             nohup gphoto2 $i gphoto2 --trigger-capture &
-            sleep $cam_delay
+            sleep "$cam_delay"
         done
         count=$((0))
         sleep 6

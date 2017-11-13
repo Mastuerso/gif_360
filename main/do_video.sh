@@ -14,8 +14,8 @@ if [ $put_MARK -eq $((1)) ]; then
     MARK=${put_MARK:6}
     #ffmpeg -i test.mp4 -i watermark.png -filter_complex "overlay=10:10" test1.mp4
     ffmpeg -i $gifname.mp4 -i $MARK -filter_complex "overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2" b$gifname.mp4    
-    rm $wdir/$gifname
-    mv $wdir/b$gifname $wdir/$gifname
+    rm $wdir/$gifname.mp4
+    mv $wdir/b$gifname.mp4 $wdir/$gifname.mp4
 fi
 
 file="$w_dir/results.txt"
