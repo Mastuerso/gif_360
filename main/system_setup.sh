@@ -24,7 +24,8 @@ function capturetargetSD {
 function animate {
     capturetargetSD
     echo "Animating Gif"
-    bash "$dir/animator.sh"
+    #bash "$dir/animator.sh"
+    bash "$dir/do_video.sh"
     bash "$dir/edit_mail.sh"
     capture_images=true    
 }
@@ -55,7 +56,7 @@ function take_pics {
     fi
     echo "Recovering Imagery"
     while [ $cameras_no -gt $count ]; do
-        pic_name="$((count + 10)).JPG"
+        pic_name="image-$((count + 10)).JPG"
         i=${cam_list[$count]}
         count=$(( count + 1 ))
         nohup gphoto2 $i --get-all-files --filename "$(pwd)/images/$pic_name" --force-overwrite &
@@ -64,7 +65,7 @@ function take_pics {
     sleep 3    
     animate
     while [ $cameras_no -gt $count ]; do
-        pic_name="$((count + 10)).JPG"
+        pic_name="image-$((count + 10)).JPG"
         i=${cam_list[$count]}
         count=$(( count + 1 ))
         gphoto2 $i --delete-all-files --folder=/store_00020001/DCIM/100CANON        

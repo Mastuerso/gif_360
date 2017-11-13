@@ -31,7 +31,7 @@ else
     
     #attachment line
     echo attachment
-    attch_line="17s/.*/\$m_attch=\'\/home\/onikom\/Pictures\/${gif_name}.gif\';/"
+    attch_line="17s/.*/\$m_attch=\'\/home\/onikom\/Pictures\/${gif_name}\';/"
     sed -i $attch_line $sendmail_file
     
     #send email
