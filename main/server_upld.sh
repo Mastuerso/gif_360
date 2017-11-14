@@ -4,7 +4,7 @@ HOST=onikom.com.mx
 USER=onikomaws
 PASSWORD=`echo b25pbW92aWw4JQo= | base64 --decode`
 DIR_ADDS=/httpdocs/gif360
-file_name="$1.gif"
+file_name=$1
 echo "Uploading $file_name to server"
 local_file="/home/onikom/Pictures/$file_name"
 remote_file="$DIR_ADDS/$file_name"
