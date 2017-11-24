@@ -1,6 +1,3 @@
 #!/bin/bash
-camera_capture_target=$(gphoto2 --get-config=capturetarget | grep Current:)
-camera_capture_target=${camera_capture_target:9}
-if [ "$camera_capture_target" != "Memory card" ]; then
-    echo "change to SD"
-fi
+dir=$(pwd)/images
+ffmpeg -framerate 10 -pattern_type glob -i $dir/'*.JPG' -c:v libx264 -pix_fmt yuv420p $dir/'out.mp4'
