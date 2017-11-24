@@ -7,9 +7,10 @@ file="$w_dir/image_list.txt"
 
 img_count=$((0))
 count=$((0))
-gifname=$(date +"%b%d-%H%M")
+#gifname=$(date +"%b%d-%H%M")
+gifname="roberlo_luna"
 echo $gifname.gif >gif_name.txt
-#echo "gif name: $gifname"
+echo "gif name: $gifname"
 nu_delay=$((0))
 
 ls "$(pwd)/images">"$(pwd)/image_list.txt"
