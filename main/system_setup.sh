@@ -35,6 +35,7 @@ function cleanDir {
 }
 
 function take_pics {
+    #Recover pics and send ready
     echo "take pics function ... "
     cleanDir
     count=$((0))
