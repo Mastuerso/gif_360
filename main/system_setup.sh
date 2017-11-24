@@ -11,10 +11,8 @@ capture_mode=true
 dynamic_gif=false
 dir=$(pwd)
 
-function dummy {
-    echo "dummy_function"
-    echo -n "o" >/dev/ttyACM0
-    capture_images=true
+function detect_cameras {
+    bash "$dir/cam_detect.sh"
 }
 
 function capturetargetSD {
@@ -112,12 +110,12 @@ while [ $cameras_ready == "false" ]; do
                 fi
             done <"$file"
             count=$(( count + 1 ))
-        done        
-        cameras_no=${#cam_ordis[@]}
+        done
+        #Normalizing camera index           
+        cameras_no=$((0))
         for i in "${cam_ordis[@]}"; do
-            #echo "$i"
-            cameras_no=$(( cameras_no - 1 ))            
-            cam_list[$cameras_no]=$i #Camera Indez normalized           
+            cam_list[$cameras_no]=$i
+            cameras_no=$(( cameras_no + 1 ))
         done
         echo "${#cam_list[@]} Cameras sorted"
         setup_done=true
@@ -164,27 +162,8 @@ while $setup_done; do
     elif [[ "$line" ==  Dynamic* ]]; then
         capture_images=false
         freeze=false
-    fi    
-    #while IFS= read line; do
-    #    if [[ "$line" == Ready* ]]; then            
-    #        capture_images=true
-    #        break
-    #    elif [[ "$line" ==  Freezed* ]]; then
-    #        echo "Did the cameras shoot?"
-    #        capture_images=false
-    #        freeze=true
-    #        #dummy
-    #        #take_pics
-    #        break
-    #    elif [[ "$line" ==  Dynamic* ]]; then
-    #        echo "Let me do the hardwork"
-    #        capture_images=false
-    #        freeze=false
-    #        #dummy
-    #        #take_pics
-    #        break
-    #    fi
-    #done <"$file"
+    fi
+    
     if $capture_images; then
         echo "Take some pictures"
     else
@@ -193,11 +172,6 @@ while $setup_done; do
         else
             echo "Dynamic gif"
         fi
-        #echo "Dummy function"
-        #dummy
         take_pics
     fi
-    #Animate Gif
-    #echo "Animating gif"
-    #animate
 done

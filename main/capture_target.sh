@@ -22,10 +22,12 @@ if [ $cam_count -gt $((0)) ]; then
     count=$((1))
     while [ $count -le $cam_count ]; do
         #echo "Current capturetarget"
-        #gphoto2 ${cam_port[$count]} --get-config=capturetarget
-        gphoto2 ${cam_port[$count]} --set-config capturetarget=1 &&
-        #echo "After config capturetarget"
-        gphoto2 ${cam_port[$count]} --get-config=capturetarget
+        camera_capture_target=$(gphoto2 ${cam_port[$count]} --get-config=capturetarget | grep Current:)
+        camera_capture_target=${camera_capture_target:9}
+        if [ "$camera_capture_target" != "Memory card" ]; then
+            gphoto2 ${cam_port[$count]} --set-config capturetarget=1
+        fi
+        #gphoto2 ${cam_port[$count]} --set-config capturetarget=1 &&
         count=$(( count + 1 ))
     done            
 else
