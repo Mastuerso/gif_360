@@ -1,3 +1,3 @@
 #!/bin/bash
 echo "Session Started"
-screen /dev/ttyACM0 9600 -d -m 
+screen -d -m /dev/ttyACM0 9600
