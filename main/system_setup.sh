@@ -11,6 +11,10 @@ capture_mode=true
 dynamic_gif=false
 dir=$(pwd)
 
+function box_Ready {
+    bash "$dir/box_ready.sh"
+}
+
 function detect_cameras {
     bash "$dir/cam_detect.sh"
 }
@@ -35,9 +39,13 @@ function cleanDir {
 }
 
 function take_pics {
-    #Recover pics and send ready
-    echo "take pics function ... "
-    cleanDir
+    #create a directory to store images and gif settings
+    priv_dir=$dir/gifs/$(date +%b%d_%k%M_%S)
+    mkdir -p $priv_dir/images
+    #cp gif_settings
+    cp $dir/gif_settings.txt $priv_dir
+    #store images    
+    #cleanDir
     count=$((0))
     cameras_no=${#cam_list[@]}
     echo "number of cameras: $cameras_no"
@@ -59,19 +67,23 @@ function take_pics {
         pic_name="image-$((count + 11)).JPG"
         i=${cam_list[$count]}
         count=$(( count + 1 ))
-        #nohup gphoto2 $i --get-all-files --filename "$(pwd)/images/$pic_name" --force-overwrite &
-        gphoto2 $i --get-all-files --filename "$(pwd)/images/$pic_name" --force-overwrite        
+        #nohup gphoto2 $i --get-all-files --filename "$priv_dir/images/$pic_name" --force-overwrite &
+        gphoto2 $i --get-all-files --filename "$priv_dir/images/$pic_name" --force-overwrite        
     done    
     count=$((0))
-    sleep 3    
-    animate
+    #sleep 3    
+    #animate
     while [ $cameras_no -gt $count ]; do
         i=${cam_list[$count]}
         count=$(( count + 1 ))
         gphoto2 $i --delete-all-files --folder=/store_00020001/DCIM/100CANON        
     done
+    box_Ready
+    capture_images=true
     echo "Files recovered"
-    echo "Files deleted"    
+    echo "Files deleted"
+    #update chore.list
+    #Recover pics and send ready
 }
 
 #Detect cameras
