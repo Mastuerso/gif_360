@@ -39,6 +39,22 @@ function cleanDir {
 }
 
 function take_pics {
+    #Read Gif Settings
+    file="$dir/gif_settings.txt"
+    line=$(sed '6q;d' $file)
+    line=${line:7}
+    if [ $line -eq $((0)) ]; then
+        #echo "Dynamic"
+        line=$(sed '7q;d' $file)
+        line=${line:8}
+        cam_delay=$(bc <<< "scale=3;$line/$((1000))")
+        echo -n "d" >/dev/ttyACM0
+        freeze=false
+    else
+        #echo "Frezzed"
+        echo -n "f" >/dev/ttyACM0
+        freeze=true
+    fi
     #create a directory to store images and gif settings
     priv_dir=$dir/gifs/$(date +%b%d_%k%M_%S)
     mkdir -p $priv_dir/images
@@ -54,7 +70,8 @@ function take_pics {
         while [ $cameras_no -gt $count ]; do
             i=${cam_list[$count]}
             count=$(( count + 1 ))            
-            nohup gphoto2 $i gphoto2 --trigger-capture &
+            #nohup gphoto2 $i gphoto2 --trigger-capture &
+            gphoto2 $i gphoto2 --trigger-capture
             sleep "$cam_delay"
         done
         count=$((0))
@@ -82,6 +99,8 @@ function take_pics {
     capture_images=true
     echo "Files recovered"
     echo "Files deleted"
+    echo "=============TAKE PICS=============="
+    exit
     #update chore.list
     #Recover pics and send ready
 }
@@ -142,49 +161,12 @@ done
 #Take and recover photographies
 echo "Taking and recovering photographies ..."
 while $setup_done; do
-    
-    #Read Gif Settings
-    if $capture_images; then
-        #echo "Selecting gif type"
-        file="$dir/gif_settings.txt"
-        line=$(sed '6q;d' $file)
-        #echo $line
-        line=${line:7}
-        if [ $line -eq $((0)) ]; then
-            #echo "Dynamic"
-            line=$(sed '7q;d' $file)
-            #echo $line
-            line=${line:8}
-            echo "cam delay: ${line}ms"
-            cam_delay=$(bc <<< "scale=3;$line/$((1000))")
-            echo -n "d" >/dev/ttyACM0
-        else
-            #echo "Frezzed"
-            echo -n "f" >/dev/ttyACM0
-        fi
-    fi
-    
+    #echo "==========SETUP_DONE==============="
     file="$dir/results.txt"
     timeout 0.1 cat </dev/ttyACM0 | tee $file
     line=$(sed '3q;d' $file)
-    if [[ "$line" == Ready* ]]; then
-        capture_images=true
-    elif [[ "$line" ==  Freezed* ]]; then
-        capture_images=false
-        freeze=true
-    elif [[ "$line" ==  Dynamic* ]]; then
-        capture_images=false
-        freeze=false
-    fi
-    
-    if $capture_images; then
-        echo "Take some pictures"
-    else
-        if $freeze; then
-            echo "Freezed gif"
-        else
-            echo "Dynamic gif"
-        fi
+    if [[ "$line" != Ready* ]]; then
+        #echo "TRABADA?"
         take_pics
     fi
 done
