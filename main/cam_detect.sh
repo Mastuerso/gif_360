@@ -1,5 +1,7 @@
 #!/bin/bash
 #---Detecting cameras---
+setup_done=false
+cameras_ready=false
 dir=$(pwd)
 while [ $cameras_ready == "false" ]; do
     gphoto2 --auto-detect > cam_list.txt
@@ -33,11 +35,11 @@ while [ $cameras_ready == "false" ]; do
                 fi
             done <"$file"
             count=$(( count + 1 ))
-        done        
+        done
         cameras_no=${#cam_ordis[@]}
         #Normalizing camera order
         for i in "${cam_ordis[@]}"; do
-            cameras_no=$(( cameras_no - 1 ))            
+            cameras_no=$(( cameras_no - 1 ))
             cam_list[$cameras_no]=$i
         done
         echo "${#cam_list[@]} Cameras sorted"

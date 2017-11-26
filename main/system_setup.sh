@@ -1,8 +1,6 @@
 #!/bin/bash
 echo "System Setup"
 #shopt -s lastpipe
-sleep 1
-
 setup_done=false
 cameras_ready=false
 capture_images=true
@@ -30,7 +28,7 @@ function animate {
     bash "$dir/do_video.sh"
     bash "$dir/edit_mail.sh"
     bash "$dir/fbk_mnger.sh"
-    capture_images=true    
+    capture_images=true
 }
 
 function cleanDir {
@@ -60,7 +58,7 @@ function take_pics {
     mkdir -p $priv_dir/images
     #cp gif_settings
     cp $dir/gif_settings.txt $priv_dir
-    #store images    
+    #store images
     #cleanDir
     count=$((0))
     cameras_no=${#cam_list[@]}
@@ -69,7 +67,7 @@ function take_pics {
         echo "Dynamic gif"
         while [ $cameras_no -gt $count ]; do
             i=${cam_list[$count]}
-            count=$(( count + 1 ))            
+            count=$(( count + 1 ))
             #nohup gphoto2 $i gphoto2 --trigger-capture &
             gphoto2 $i gphoto2 --trigger-capture
             sleep "$cam_delay"
@@ -85,15 +83,15 @@ function take_pics {
         i=${cam_list[$count]}
         count=$(( count + 1 ))
         #nohup gphoto2 $i --get-all-files --filename "$priv_dir/images/$pic_name" --force-overwrite &
-        gphoto2 $i --get-all-files --filename "$priv_dir/images/$pic_name" --force-overwrite        
-    done    
+        gphoto2 $i --get-all-files --filename "$priv_dir/images/$pic_name" --force-overwrite
+    done
     count=$((0))
-    #sleep 3    
+    #sleep 3
     #animate
     while [ $cameras_no -gt $count ]; do
         i=${cam_list[$count]}
         count=$(( count + 1 ))
-        gphoto2 $i --delete-all-files --folder=/store_00020001/DCIM/100CANON        
+        gphoto2 $i --delete-all-files --folder=/store_00020001/DCIM/100CANON
     done
     box_Ready
     capture_images=true
@@ -137,13 +135,13 @@ while [ $cameras_ready == "false" ]; do
                 linecount=$((linecount + 1))
                 if [[ $linecount == $((3)) ]]; then
                     cam_number=${cam_no:12}
-                    #echo "$cam_number is at ${cam_port[$count]}"           
+                    #echo "$cam_number is at ${cam_port[$count]}"
                     cam_ordis[${cam_number}]=${cam_port[$count]}
                 fi
             done <"$file"
             count=$(( count + 1 ))
         done
-        #Normalizing camera index           
+        #Normalizing camera index
         cameras_no=$((0))
         for i in "${cam_ordis[@]}"; do
             cam_list[$cameras_no]=$i
