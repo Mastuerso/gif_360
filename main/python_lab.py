@@ -33,7 +33,7 @@ cmd = [ 'bash', 'shell_lab.sh' ]
 dummyRes = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 #dummyRes = dummyRes.rstrip("\n\r")
 
-print("El mensaje enviado fue " + dummyRes)
+print("Message received: " + dummyRes)
 
 #if ARGS > 1:
 #    OPTION = sys.argv[1]
