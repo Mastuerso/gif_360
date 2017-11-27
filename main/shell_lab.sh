@@ -19,6 +19,7 @@ COUNT=$((0))
 #echo "${OUTPUT}" | wc -l
 CAMERAS=$(echo "${OUTPUT}" | wc -l)
 CAMERAS=$((CAMERAS - 2))
+CAMPORTS=''
 
 if [[ $CAMERAS -gt 0 ]]; then
   echo "$CAMERAS detected" 1>&2
@@ -36,7 +37,7 @@ if [[ $CAMERAS -gt 0 ]]; then
       #fi
     fi
   done <<< "${OUTPUT}"
-  echo -e "CAMPORTS:$CAMPORTS$CAMPORTS$CAMPORTS$CAMPORTS"
+  echo -e "$CAMPORTS"
 else
   echo "No cameras detected"
 fi

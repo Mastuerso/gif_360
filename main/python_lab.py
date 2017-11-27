@@ -32,8 +32,15 @@ import subprocess
 cmd = [ 'bash', 'shell_lab.sh' ]
 dummyRes = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 #dummyRes = dummyRes.rstrip("\n\r")
+print("Message received: \n" + dummyRes)
 
-print("Message received: " + dummyRes)
+cmd = [ 'bash', 'shell_lab2.sh', dummyRes ]
+dummyRes2 = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+#dummyRes = dummyRes.rstrip("\n\r")
+
+print("Message received 2: \n" + dummyRes2)
+
+
 
 #if ARGS > 1:
 #    OPTION = sys.argv[1]
