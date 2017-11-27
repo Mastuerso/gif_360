@@ -1,8 +1,8 @@
 #!/bin/bash
-#---Detecting cameras---
-setup_done=false
-cameras_ready=false
+#---Cameras Setup---
 dir=$(pwd)
+cameras_ready=false
+
 while [ $cameras_ready == "false" ]; do
     gphoto2 --auto-detect > cam_list.txt
     file="$dir/cam_list.txt"
@@ -43,7 +43,6 @@ while [ $cameras_ready == "false" ]; do
             cam_list[$cameras_no]=$i
         done
         echo "${#cam_list[@]} Cameras sorted"
-        setup_done=true
         echo -n "r" >/dev/ttyACM0
     else
         echo "Please connect the cameras ..."

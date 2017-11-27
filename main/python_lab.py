@@ -4,19 +4,19 @@ import sys
 import time
 import subprocess
 
-ser = serial.Serial('/dev/ttyUSB0', baudrate = 9600, timeout = .1)
-ser.flushInput()
-time.sleep(2)
-ARGS = len(sys.argv)
-loop=1
+#ser = serial.Serial('/dev/ttyUSB0', baudrate = 9600, timeout = .1)
+#ser.flushInput()
+#time.sleep(2)
+#ARGS = len(sys.argv)
+#loop=1
 
-while loop:
-    value = serialArduino.readline().rstrip()
-    if value == "trigger":
-        print("triggered")
-        loop = 0
-    else:
-        print("not triggered")
+#while loop:
+#    value = serialArduino.readline().rstrip()
+#    if value == "trigger":
+#        print("triggered")
+#        loop = 0
+#    else:
+#        print("not triggered")
         #loop = 0
 
 #def getValuesY():
@@ -29,11 +29,11 @@ while loop:
 #    arduinoData = ser.readline().decode('ascii')
 #    return arduinoData
 
-#cmd = [ 'bash', 'dummy.sh', 'funciona' ]
-#dummyRes = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
-#dummyRes.rstrip("\n\r")
+cmd = [ 'bash', 'shell_lab.sh' ]
+dummyRes = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+#dummyRes = dummyRes.rstrip("\n\r")
 
-#print("El mensaje enviado fue " + dummyRes)
+print("El mensaje enviado fue " + dummyRes)
 
 #if ARGS > 1:
 #    OPTION = sys.argv[1]
