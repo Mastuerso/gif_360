@@ -1,51 +1,44 @@
 #!/bin/bash
-#---Cameras Setup---
-dir=$(pwd)
-cameras_ready=false
+OUTPUT=$(gphoto2 --auto-detect)
+COUNT=$((0))
+#Number of lines
+#echo "${OUTPUT}" 1>&2
+CAMERAS=$(echo "${OUTPUT}" | wc -l)
+CAMERAS=$((CAMERAS - 2))
+CAMPORTS=''
 
-while [ $cameras_ready == "false" ]; do
-    gphoto2 --auto-detect > cam_list.txt
-    file="$dir/cam_list.txt"
-    line_count=$((0))
-    cam_count=$((0))
-    while IFS= read line; do
-        line_count=$(( line_count + 1 ))
-        if [ $line_count -ge $((3)) ]; then
-            cam_count=$(( cam_count + 1 ))
-            line=${line:22}
-            line="--port="${line//[[:space:]]/}
-            cam_port[$cam_count]=$line
-        fi
-    done <"$file"
-    if [ $cam_count -gt $((0)) ]; then
-        cameras_ready=true
-        echo "$cam_count cameras detected"
-        #Sorting cameras
-        echo "Sorting cameras, please wait ..."
-        count=$((1))
-        while [ $count -le $cam_count ]; do
-            gphoto2 ${cam_port[$count]} --get-config=ownername > ownername.txt
-            file="$dir/ownername.txt"
-            linecount=$((0))
-            while IFS= read cam_no; do
-                linecount=$((linecount + 1))
-                if [[ $linecount == $((3)) ]]; then
-                    cam_number=${cam_no:12}
-                    cam_ordis[${cam_number}]=${cam_port[$count]}
-                fi
-            done <"$file"
-            count=$(( count + 1 ))
-        done
-        cameras_no=${#cam_ordis[@]}
-        #Normalizing camera order
-        for i in "${cam_ordis[@]}"; do
-            cameras_no=$(( cameras_no - 1 ))
-            cam_list[$cameras_no]=$i
-        done
-        echo "${#cam_list[@]} Cameras sorted"
-        echo -n "r" >/dev/ttyACM0
-    else
-        echo "Please connect the cameras ..."
-        sleep 60
+if [[ $CAMERAS -gt 0 ]]; then
+  echo "$CAMERAS cameras detected" 1>&2
+  while read -r line; do
+    COUNT=$((COUNT + 1))
+    #GET CAMERAS PORTS
+    if [[ $COUNT -gt 2 ]]; then
+      #echo "$COUNT: $line" 1>&2
+      line=${line:22}
+      line="--port="${line//[[:space:]]/}
+      CAMPORTS="${CAMPORTS}${line}\n"
+      #echo "camera port is $line" 1>&2
+      #CONFIGURING CAPTURE TARGET
+      camera_capture_target=$(gphoto2 ${line} --get-config=capturetarget | grep Current:)
+      camera_capture_target=${camera_capture_target:9}
+      if [ "$camera_capture_target" != "Memory card" ]; then
+          gphoto2 ${line} --set-config capturetarget=1
+      fi
+      #CAMERAS NUMBER
+      camera_number=$(gphoto2 ${line} --get-config=ownername | grep Current:)
+      camera_number=${camera_number:12}
+      #echo "camera_number" 1>&2
+      cam_ports[${camera_number}]="\n${line}"
+      echo "camera $camera_number is at PORT: ${cam_ports[${camera_number}]}" 1>&2
     fi
-done
+  done <<< "${OUTPUT}"
+  #SORTING CAMERAS
+  current_cam=$((0))
+  for i in "${cam_ports[@]}"; do
+      cam_list[$current_cam]=$i
+      current_cam=$(( current_cam + 1 ))
+  done
+  echo -e "${cam_list[@]}"
+else
+  echo "No cameras detected"
+fi
