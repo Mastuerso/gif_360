@@ -13,9 +13,10 @@ LineCount=$((LineCount - 1))
 
 while read -r line; do
   if [[ $COUNT -gt 0 ]] && [[ $COUNT -lt $LineCount ]]; then
-    pic_name="image-$((COUNT + 11)).JPG"
+    pic_name="image-$((COUNT + 10)).JPG"
     gphoto2 $line --get-all-files --filename "$gif_dir/images/$pic_name" --force-overwrite
     gphoto2 $line --delete-all-files --folder=/store_00020001/DCIM/100CANON
   fi
   COUNT=$((COUNT + 1))
 done <<< "${INPUT}"
+echo "$gif_dir" >> chore.list

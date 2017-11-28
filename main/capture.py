@@ -25,7 +25,7 @@ cmd = [ 'bash', 'cam_setup.sh' ]
 cameras = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 
 cmd = [ 'bash', 'take_pics.sh', cameras ]
-
+save_cmd = [ 'bash', 'save_pics.sh', cameras ]
 
 print("READY")
 
@@ -42,3 +42,5 @@ while 1:
             serialArduino.write(b'f')
         #RECOVER PICS
         #UPDATE CHORE.LIST
+        subprocess.Popen(save_cmd, stdout=subprocess.PIPE).communicate()[0]
+        print("READY")
