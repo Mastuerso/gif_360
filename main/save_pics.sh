@@ -5,7 +5,7 @@ COUNT=$((0))
 dir=$(pwd)
 gif_dir=$dir/gifs/$(date +%b%d_%k%M_%S)
 mkdir -p $gif_dir/images
-cp $dir/gif_settings.txt $priv_dir
+cp $dir/gif_settings.txt $gif_dir
 #Number of lines
 LineCount=$(echo "${INPUT}" | wc -l)
 LineCount=$((LineCount - 1))

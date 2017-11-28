@@ -19,7 +19,6 @@ def gifSelected():
 
 serialArduino = serial.Serial('/dev/ttyACM0', baudrate = 9600, timeout = .1)
 serialArduino.flushInput()
-time.sleep(3)
 
 cmd = [ 'bash', 'cam_setup.sh' ]
 cameras = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
@@ -27,12 +26,13 @@ cameras = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 cmd = [ 'bash', 'take_pics.sh', cameras ]
 save_cmd = [ 'bash', 'save_pics.sh', cameras ]
 
-print("READY")
+print("\n===READY===")
 
 while 1:
     value = serialArduino.readline().rstrip()
     if value == "trigger":
         #print("triggered")
+        print("\n===WAIT===")
         gifType = gifSelected()
         if compare(gifType, "dinamic"):
             #print("Dinamic gif ...")
@@ -40,7 +40,8 @@ while 1:
         elif compare(gifType, "freeze"):
             #print("freeze gif ...")
             serialArduino.write(b'f')
+            time.sleep(1)
         #RECOVER PICS
         #UPDATE CHORE.LIST
         subprocess.Popen(save_cmd, stdout=subprocess.PIPE).communicate()[0]
-        print("READY")
+        print("\n===READY===")

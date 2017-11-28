@@ -1,21 +1,26 @@
 #!/bin/bash
 INPUT=$1
-#echo "$INPUT" 1>&2
-COUNT=$((0))
+echo "Checking $INPUT directories" 1>&2
+#COUNT=$((0))
 dir=$(pwd)
-gif_dir=$dir/gifs/$(date +%b%d_%k%M_%S)
-mkdir -p $gif_dir/images
-cp $dir/gif_settings.txt $priv_dir
-#Number of lines
-LineCount=$(echo "${INPUT}" | wc -l)
-LineCount=$((LineCount - 1))
+gif_dir=$(cat "$dir/chore.list")
+#mkdir -p $gif_dir/images
+#echo "$gif_dir" 1>&2
+#cp $dir/gif_settings.txt $priv_dir
+##Number of lines
+#LineCount=$(echo "${gif_dir}" | wc -l)
+#LineCount=$((LineCount - 1))
 #echo "LineCount: $LineCount" 1>&2
-
+#
 while read -r line; do
-  if [[ $COUNT -gt 0 ]] && [[ $COUNT -lt $LineCount ]]; then
-    pic_name="image-$((COUNT + 11)).JPG"
-    gphoto2 $line --get-all-files --filename "$gif_dir/images/$pic_name" --force-overwrite
-    gphoto2 $line --delete-all-files --folder=/store_00020001/DCIM/100CANON
+  #COUNT=$((COUNT + 1))
+  #echo "$line" 1>&2
+  bash "$dir/do_video.sh" "$line"
+  GIFDONE=$(bash "$dir/shell_lab.sh" "$line")
+  if [[ $GIFDONE -eq 1 ]]; then
+    #echo "$GIFDONE"
+    bash "$dir/server_upld.sh" "$line"
+    bash "$dir/edit_mail.sh" "$line"
+    #bash "$dir/fbk_mnger.sh" "$line"
   fi
-  COUNT=$((COUNT + 1))
-done <<< "${INPUT}"
+done <<< "${gif_dir}"

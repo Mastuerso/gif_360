@@ -1,6 +1,7 @@
 #!/bin/bash
 #upload to the server
-file_name=$1
+minidir=$1
+file_name=$(sed '1q;d' "$minidir/gif_name.txt")
 #HOST=onikom.com.mx
 #USER=onikomaws
 #PASSWORD=`echo b25pbW92aWw4JQo= | base64 --decode`
