@@ -2,6 +2,7 @@
 import serial
 import sys
 import subprocess
+import time
 
 def compare(a, b, encoding="utf8"):
     if isinstance(a, bytes):
@@ -16,21 +17,26 @@ def gifSelected():
     selection = selection.rstrip("\r\n")
     return selection
 
-serialArduino = serial.Serial('/dev/ttyUSB0', baudrate = 9600, timeout = .1)
+serialArduino = serial.Serial('/dev/ttyACM0', baudrate = 9600, timeout = .1)
 serialArduino.flushInput()
-time.sleep(2)
-loop=1
+time.sleep(3)
 
-while loop:
+cmd = [ 'bash', 'cam_setup.sh' ]
+cameras = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+
+cmd = [ 'bash', 'take_pics.sh', cameras ]
+
+
+print("READY")
+
+while 1:
     value = serialArduino.readline().rstrip()
-
-    if value is "trigger":
-        print("triggered")
-
-    gifType = gifSelected()
-
-    if compare(gifType, "dinamic"):
-        print("Dinamic gif ...")
-    elif compare(gifType, "freeze"):
-        print("freeze gif ...")
-    loop = 0
+    if value == "trigger":
+        #print("triggered")
+        gifType = gifSelected()
+        if compare(gifType, "dinamic"):
+            #print("Dinamic gif ...")
+            subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+        elif compare(gifType, "freeze"):
+            #print("freeze gif ...")
+            serialArduino.write(b'f')

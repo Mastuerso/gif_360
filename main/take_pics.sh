@@ -15,10 +15,10 @@ NoLines=''
 
 while read -r line; do
   if [[ $COUNT -gt 0 ]] && [[ $COUNT -lt $LineCount ]]; then
-    NoLines="$NoLines$COUNT:  $line\n"
+    #NoLines="$NoLines$COUNT:  $line\n"
     nohup gphoto2 $line --trigger-capture &
     sleep "$DELAY"
   fi
   COUNT=$((COUNT + 1))
 done <<< "${INPUT}"
-echo -e "$NoLines"
+#echo -e "$NoLines"

@@ -29,16 +29,17 @@ import subprocess
 #    arduinoData = ser.readline().decode('ascii')
 #    return arduinoData
 
-cmd = [ 'bash', 'shell_lab.sh' ]
+cmd = [ 'bash', 'cam_setup.sh' ]
 dummyRes = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 #dummyRes = dummyRes.rstrip("\n\r")
 print("Message received: \n" + dummyRes)
 
-cmd = [ 'bash', 'shell_lab2.sh', dummyRes ]
-dummyRes2 = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+cmd = [ 'bash', 'take_pics.sh', dummyRes ]
+#dummyRes2 = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 #dummyRes = dummyRes.rstrip("\n\r")
 
-print("Message received 2: \n" + dummyRes2)
+#print("Message received 2: \n" + dummyRes2)
 
 
 
