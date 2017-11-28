@@ -16,6 +16,7 @@ while read -r line; do
   #COUNT=$((COUNT + 1))
   #echo "$line" 1>&2
   bash "$dir/do_video.sh" "$line"
+  sleep 1
   GIFDONE=$(bash "$dir/shell_lab.sh" "$line")
   if [[ $GIFDONE -eq 1 ]]; then
     #echo "$GIFDONE"
