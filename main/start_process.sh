@@ -1,7 +1,6 @@
 #!/bin/bash
 echo "Starting please wait"
 dir=$(pwd)
-#bash "$(pwd)/session_manager.sh"
-#bash "$(pwd)/system_setup.sh"
-#bash $dir/file_watchdog.sh
-python $dir/capture.py
+#bash $dir/file_watchdog.sh &
+#python $dir/capture.py
+nohup bash "$dir/file_watchdog.sh" & nohup python "$dir/capture.py"
