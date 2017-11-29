@@ -22,6 +22,7 @@ done <<< "${INPUT}"
 
 sleep 5
 
+COUNT=$((0))
 while read -r line; do
   if [[ $COUNT -gt 0 ]] && [[ $COUNT -lt $LineCount ]]; then
     pic_name="image-$((COUNT + 10)).JPG"
