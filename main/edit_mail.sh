@@ -21,7 +21,7 @@ else
     gif_name=$(sed '1q;d' "$wdir/gif_name.txt")
     echo "gif name: $gif_name" 1>&2
 
-    img_name="${gif_name::-4}.JPG"
+    img_name="${gif_name::-4}.gif"
 
     #modifying php ...
     echo "Editing and sending..." 1>&2

@@ -13,12 +13,14 @@ USER=marketing@socialevent.mx
 PASSWORD='C)i49X2wpThi'
 DIR_ADDS=/public_html/gif/uploads/360
 echo "Uploading $file_name to server"
+
 local_file="/home/onikom/Pictures/$file_name"
-img_file="$minidir/images/image-18.JPG"
-convert img_file -resize 600 $minidir/images/output.JPG
-local_img="$minidir/images/output.JPG"
-remote_img="$DIR_ADDS/$thumb_name.JPG"
 remote_file="$DIR_ADDS/$file_name"
+
+
+local_img="$minidir/$thumb_name.gif"
+remote_img="$DIR_ADDS/$thumb_name.gif"
+
 ftp -inv $HOST <<-EOF
     user $USER $PASSWORD
     put $local_file $remote_file
