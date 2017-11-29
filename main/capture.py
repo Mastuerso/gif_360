@@ -43,5 +43,7 @@ while 1:
             time.sleep(1)
         #RECOVER PICS
         #UPDATE CHORE.LIST
-        subprocess.Popen(save_cmd, stdout=subprocess.PIPE).communicate()[0]
+        #var = raw_input("Proceed: ")
+        #if var is "y":
+        #    subprocess.Popen(save_cmd, stdout=subprocess.PIPE).communicate()[0]           
         print("\n===READY===")

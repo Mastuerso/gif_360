@@ -6,6 +6,7 @@ file="$dir/chore.list"
 TASKS=$((0))
 while inotifywait -q -e modify $file >/dev/null; do
     echo "$file changed" 1>&2
+    sleep 40
     # do whatever else you need to do
     # do_video
     # send_mail
