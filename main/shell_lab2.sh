@@ -23,5 +23,6 @@ while read -r line; do
     bash "$dir/server_upld.sh" "$line"
     bash "$dir/edit_mail.sh" "$line"
     #bash "$dir/fbk_mnger.sh" "$line"
+    #tail -n +2 "$gif_dir" > "$dir/chore.list"
   fi
 done <<< "${gif_dir}"
