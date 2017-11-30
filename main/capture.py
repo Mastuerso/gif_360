@@ -17,11 +17,12 @@ def gifSelected():
     selection = selection.rstrip("\r\n")
     return selection
 
-serialArduino = serial.Serial('/dev/ttyACM0', baudrate = 9600, timeout = .1)
-serialArduino.flushInput()
-
 cmd = [ 'bash', 'cam_setup.sh' ]
 cameras = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+
+serialArduino = serial.Serial('/dev/ttyACM0', baudrate = 9600, timeout = .1)
+serialArduino.flushInput()
+time.sleep(4)
 
 cmd = [ 'bash', 'take_pics.sh', cameras ]
 save_cmd = [ 'bash', 'save_pics.sh', cameras ]

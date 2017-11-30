@@ -1,11 +1,22 @@
 #!/bin/bash
-OUTPUT=$(gphoto2 --auto-detect)
-COUNT=$((0))
-#Number of lines
-#echo "${OUTPUT}" 1>&2
-CAMERAS=$(echo "${OUTPUT}" | wc -l)
-CAMERAS=$((CAMERAS - 2))
+
 CAMPORTS=''
+COUNT=$((0))
+CAM_READY=false
+
+while [[ $CAM_READY != true ]]; do
+  OUTPUT=$(gphoto2 --auto-detect)
+  #Number of lines
+  #echo "${OUTPUT}" 1>&2
+  CAMERAS=$(echo "${OUTPUT}" | wc -l)
+  CAMERAS=$((CAMERAS - 2))
+  if [[ $CAMERAS -gt 0 ]]; then
+    CAM_READY=true
+  else
+    echo "No cameras detected ..." 1>&2
+    sleep 20s
+  fi
+done
 
 if [[ $CAMERAS -gt 0 ]]; then
   echo "$CAMERAS cameras detected" 1>&2
