@@ -12,8 +12,11 @@ else
 
     file_name=$(sed '1q;d' "$minidir/gif_name.txt")
 
+    getMail=$(sed '9q;d' "$minidir/gif_settings.txt")
+    getMail=${getMail:7}
+
     function facebookUpload(){
-        bash $wd/edit_fbk.sh $file_name
+        bash $wd/edit_fbk.sh $minidir/$file_name $getMail
         php /var/www/html/gif_360_web/server/fbk_upld.php
     }
 

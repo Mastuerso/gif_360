@@ -1,12 +1,12 @@
-delay=4
+delay=
 loop=1
 patrol_cycle_gif=0
 in_between=0
 quality=100
-freeze=0
-d_delay=100
-email=1
-mailto=antonio.credoz@gmail.com
+freeze=1
+d_delay=
+email=0
+mailto=
 watermark=0
 wmark=/home/onikom/Downloads/marco-gifs.png
 fb_post=0
