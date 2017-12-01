@@ -1,9 +1,11 @@
 #!/bin/bash
 INPUT=$1
-#echo "$INPUT" 1>&2
+echo "$INPUT" 1>&2
 COUNT=$((0))
 dir=$(pwd)
-gif_dir=$dir/gifs/$(date +%b%d_%k%M_%S)
+gif_dir_x=$dir/gifs/$(date +%b%d_%k%M_%S)
+gif_dir=$(echo ${gif_dir_x//[[:blank:]]/})
+echo "$gif_dir" 1>&2
 mkdir -p $gif_dir/images
 cp $dir/gif_settings.txt $gif_dir
 #Number of lines

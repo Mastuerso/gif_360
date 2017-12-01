@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "=================VIDEO=================" 1>&2
-gifname=$(date +%b%d_%k%M_%S)
+gifnamex=$(date +%b%d_%k%M_%S)
+gifname=$(echo ${gifnamex//[[:blank:]]/})
 w_dir=$1
 FPS=$(sed '1q;d' "$w_dir/gif_settings.txt")
 FPS=${FPS:6}
