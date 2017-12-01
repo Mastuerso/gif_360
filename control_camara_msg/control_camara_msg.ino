@@ -30,7 +30,7 @@ void loop() {
     key = Serial.read();
     if (key == 'f') {
       digitalWrite(shooter, HIGH);
-      //delay(200);
+      delay(200);
       digitalWrite(shooter, LOW);
     }
   }
