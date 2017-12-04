@@ -48,5 +48,5 @@ while 1:
         #if var is "y":
         #    subprocess.Popen(save_cmd, stdout=subprocess.PIPE).communicate()[0]
         subprocess.Popen(save_cmd, stdout=subprocess.PIPE).communicate()[0]
-        time.sleep(75)
+        time.sleep(40)
         print("\n===READY===")

@@ -21,6 +21,7 @@ if [ ! -f $w_dir/*.mp4 ]; then
 fi
 
 if [[ $GIFDONE -ne 1 ]]; then
+  bash backImg.sh "$w_dir"
   bash net_gif.sh "$w_dir" "$gifname"
   if [ $QUALITY -lt $((100)) ]; then
       mogrify -resize "$QUALITY%" "$(pwd)/images/*.JPG"

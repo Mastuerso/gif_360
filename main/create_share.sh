@@ -5,7 +5,7 @@ LineCount=$(echo "${gif_dir}" | wc -l)
 
 for (( i = 0; i < $LineCount; i++ )); do
   line=$(head -n 1 chore.list)
-  bash "$dir/do_video.sh" "$line"  
+  bash "$dir/do_video.sh" "$line"
   sleep 5s
   GIFDONE=$(bash "$dir/shell_lab.sh" "$line")
   if [[ $GIFDONE -eq 1 ]]; then
