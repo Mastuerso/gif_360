@@ -7,5 +7,5 @@ while inotifywait -q -e modify $file >/dev/null; do
     echo "$file changed" 1>&2
     #sleep 1m
     # do whatever else you need to do
-    bash create_share.sh
+    bash $dir/shell_lab.sh
 done
