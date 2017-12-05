@@ -16,6 +16,7 @@ LineCount=$((LineCount - 1))
 while read -r line; do
   if [[ $COUNT -gt 0 ]] && [[ $COUNT -lt $LineCount ]]; then
     pic_name="image-$((COUNT + 10)).JPG"
+    #pic_name=`printf %04d%s ${a%*}`.JPG
     nohup gphoto2 $line --get-all-files --filename "$gif_dir/images/$pic_name" --force-overwrite &
     #gphoto2 $line --delete-all-files --folder=/store_00020001/DCIM/100CANON
   fi
@@ -27,7 +28,6 @@ sleep 5s
 COUNT=$((0))
 while read -r line; do
   if [[ $COUNT -gt 0 ]] && [[ $COUNT -lt $LineCount ]]; then
-    pic_name="image-$((COUNT + 10)).JPG"
     nohup gphoto2 $line --delete-all-files --folder=/store_00020001/DCIM/100CANON &
   fi
   COUNT=$((COUNT + 1))
