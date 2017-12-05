@@ -22,7 +22,7 @@ while read -r line; do
   COUNT=$((COUNT + 1))
 done <<< "${INPUT}"
 
-sleep 5
+sleep 5s
 
 COUNT=$((0))
 while read -r line; do

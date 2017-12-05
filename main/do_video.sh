@@ -12,13 +12,7 @@ MARK=${MARK:6}
 QUALITY=$(sed '5q;d' "$w_dir/gif_settings.txt")
 QUALITY=${QUALITY:8}
 
-if [ ! -f $w_dir/*.mp4 ]; then
-    GIFDONE=$((0))
-    #echo "$GIFDONE"
-  else
-    GIFDONE=$((1))
-    #echo "$GIFDONE"
-fi
+GIFDONE=$(bash "$dir/file_exist.sh" "$w_dir mp4")
 
 if [[ $GIFDONE -ne 1 ]]; then
   bash backImg.sh "$w_dir"

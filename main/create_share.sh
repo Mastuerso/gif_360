@@ -7,7 +7,7 @@ for (( i = 0; i < $LineCount; i++ )); do
   line=$(head -n 1 chore.list)
   bash "$dir/do_video.sh" "$line"
   sleep 5s
-  GIFDONE=$(bash "$dir/shell_lab.sh" "$line")
+  GIFDONE=$(bash "$dir/file_exist.sh" "$line mp4")
   if [[ $GIFDONE -eq 1 ]]; then
     bash "$dir/server_upld.sh" "$line"
     sleep 5s
