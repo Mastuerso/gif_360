@@ -23,7 +23,7 @@ while read -r line; do
   COUNT=$((COUNT + 1))
 done <<< "${INPUT}"
 
-sleep 5s
+sleep 10s
 
 COUNT=$((0))
 while read -r line; do
@@ -33,4 +33,5 @@ while read -r line; do
   COUNT=$((COUNT + 1))
 done <<< "${INPUT}"
 
+bash "$dir/do_video.sh" "$gif_dir"
 echo "$gif_dir" >> chore.list
