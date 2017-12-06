@@ -18,7 +18,7 @@ while [ $DO -eq $((1)) ]; do
     else
         echo "Working on ... $line" 1>&2
         bash "$dir/do_video.sh" "$line"
-        GIFDONE=$(bash "$dir/file_exist.sh" "$line mp4")
+        GIFDONE=$(bash "$dir/file_exist.sh" "$line" "mp4")
         if [[ $GIFDONE -eq 1 ]]; then
           bash "$dir/server_upld.sh" "$line"
           bash "$dir/edit_mail.sh" "$line"

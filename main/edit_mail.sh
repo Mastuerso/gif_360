@@ -33,7 +33,7 @@ else
 
     #attachment line
     echo attachment 1>&2
-    attch_line="17s/.*/\$m_attch=\'\/home\/onikom\/Pictures\/${gif_name}\';/"
+    attch_line="17s/.*/\$m_attch=\'\/home\/gif\/Pictures\/${gif_name}\';/"
     sed -i $attch_line $sendmail_file
 
     #video url

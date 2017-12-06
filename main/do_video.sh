@@ -12,7 +12,7 @@ MARK=${MARK:6}
 QUALITY=$(sed '5q;d' "$w_dir/gif_settings.txt")
 QUALITY=${QUALITY:8}
 
-GIFDONE=$(bash "$dir/file_exist.sh" "$w_dir mp4")
+GIFDONE=$(bash "$dir/file_exist.sh" "$w_dir" "mp4")
 
 if [[ $GIFDONE -ne 1 ]]; then
   bash backImg.sh "$w_dir"
@@ -36,5 +36,5 @@ if [[ $GIFDONE -ne 1 ]]; then
       mv $w_dir/b$gifname.mp4 $w_dir/$gifname.mp4
   fi
 
-  cp "$w_dir/$gifname.mp4" "/home/onikom/Pictures/$gifname.mp4"
+  cp "$w_dir/$gifname.mp4" "/home/gif/Pictures/$gifname.mp4"
 fi

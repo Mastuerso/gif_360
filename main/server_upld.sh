@@ -14,7 +14,7 @@ PASSWORD='C)i49X2wpThi'
 DIR_ADDS=/public_html/gif/uploads/360
 echo "Uploading $file_name to server"
 
-local_file="/home/onikom/Pictures/$file_name"
+local_file="/home/gif/Pictures/$file_name"
 remote_file="$DIR_ADDS/$file_name"
 
 
