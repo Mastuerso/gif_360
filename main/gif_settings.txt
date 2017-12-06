@@ -1,12 +1,12 @@
-delay=8
+delay=7
 loop=1
 patrol_cycle_gif=0
 in_between=0
 quality=100
 freeze=1
 d_delay=
-email=1
-mailto=andres.lara@blackecco.com
+email=0
+mailto=antonio.credoz@gmail.com
 watermark=0
 wmark=
 fb_post=0
