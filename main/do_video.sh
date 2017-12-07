@@ -18,7 +18,8 @@ if [[ $GIFDONE -ne 1 ]]; then
   bash backImg.sh "$w_dir"
   bash net_gif.sh "$w_dir" "$gifname"
   if [ $QUALITY -lt $((100)) ]; then
-      mogrify -resize "$QUALITY%" "$(pwd)/images/*.JPG"
+      mogrify -resize $QUALITY"%" $w_dir/images/*.JPG
+      sleep 2s
   fi
 
   echo $gifname.mp4 > $w_dir/gif_name.txt
