@@ -1,6 +1,6 @@
 #!/bin/bash
 dir=$1
-echo "$dir1"
+echo "$dir1" 1>&2
 imgList=$(ls -1 $dir/images/*.JPG)
 echo "$imgList" 1>&2
 LineCount=$(echo "${imgList}" | wc -l)
