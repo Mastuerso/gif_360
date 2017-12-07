@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "=================VIDEO=================" 1>&2
+myUserName=$(whoami)
 gifnamex=$(date +%b%d_%k%M_%S)
 gifname=$(echo ${gifnamex//[[:blank:]]/})
 w_dir=$1
@@ -37,5 +38,5 @@ if [[ $GIFDONE -ne 1 ]]; then
       mv $w_dir/b$gifname.mp4 $w_dir/$gifname.mp4
   fi
 
-  cp "$w_dir/$gifname.mp4" "/home/gif/Pictures/$gifname.mp4"
+  cp "$w_dir/$gifname.mp4" "/home/$myUserName/Pictures/$gifname.mp4"
 fi
