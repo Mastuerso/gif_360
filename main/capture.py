@@ -41,7 +41,7 @@ while 1:
         elif compare(gifType, "freeze"):
             #print("freeze gif ...")
             serialArduino.write(b'f')
-            time.sleep(1)
+            #time.sleep(1)
         #RECOVER PICS
         #UPDATE CHORE.LIST
         #var = raw_input("Proceed: ")

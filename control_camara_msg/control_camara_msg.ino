@@ -23,7 +23,8 @@ void loop() {
   if (buttonState1 == LOW && on_release) {
     Serial.println("trigger");
     on_release = false;
-  } else {
+  }
+  if (buttonState1 == LOW && !on_release){
     Serial.println("");
   }
   if (Serial.available() > 0) {    

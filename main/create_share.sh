@@ -28,9 +28,6 @@ while [ $DO -eq $((1)) ]; do
             bash "$dir/edit_mail.sh" "$line"
             bash "$dir/fbk_mnger.sh" "$line"
             remove_line
-            #sleep 1s
-        else
-            remove_line
         fi
     fi    
 done

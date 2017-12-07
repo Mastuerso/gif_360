@@ -1,17 +1,27 @@
 #!/bin/bash
-FLAG="false"
-while [ "$FLAG" == "false" ]; do
-  if [ -e $1  ]; then
-    READY=$(lsof $1)
-    if [ "$READY" == ""  ]; then
-      echo "$1 is Ready"      
-      FLAG="true"
+dir=$1
+file_ext=$2
+expected=$3
+
+COUNT=$((0))
+loop=$((1))
+
+while [ $loop -eq $((1)) ]; do
+    file_list=$(ls -1 $dir/*.$file_ext)
+    #echo "$file_list" 1>&2
+    founded=$(echo "${file_list}" | wc -l)
+    if [ $founded -eq $expected ]; then
+        loop=$((0))
+        echo "valid dir"
     else
-      echo "$1 isn't Ready"
-      sleep 3s
+        sleep 1s
+		rest=$((expected - founded))
+		echo "missing $rest" 1>&2
+        COUNT=$((COUNT+1))
+		#echo "count: $COUNT" 1>&2
+        if [ $COUNT -eq $expected ]; then
+		    loop=$((0))
+            echo "invalid dir"	    
+        fi
     fi
-  else
-    echo "file doesn't exist"
-    sleep 3s
-  fi
 done
