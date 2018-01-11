@@ -4,6 +4,7 @@ myUserName=$(whoami)
 gifnamex=$(date +%b%d_%k%M_%S)
 gifname=$(echo ${gifnamex//[[:blank:]]/})
 w_dir=$1
+dir=$(pwd)
 FPS=$(sed '1q;d' "$w_dir/gif_settings.txt")
 FPS=${FPS:6}
 put_MARK=$(sed '10q;d' "$w_dir/gif_settings.txt")
