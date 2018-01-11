@@ -16,7 +16,9 @@ QUALITY=${QUALITY:8}
 GIFDONE=$(bash "$dir/file_exist.sh" "$w_dir" "mp4")
 
 if [[ $GIFDONE -ne 1 ]]; then
-  bash backImg.sh "$w_dir"
+  #insert calibration script here 
+  #read and apply rotation
+  bash backImg.sh "$w_dir"  
   bash net_gif.sh "$w_dir" "$gifname"
   if [ $QUALITY -lt $((100)) ]; then
       mogrify -resize $QUALITY"%" $w_dir/images/*.JPG
@@ -37,6 +39,6 @@ if [[ $GIFDONE -ne 1 ]]; then
       rm $w_dir/$gifname.mp4
       mv $w_dir/b$gifname.mp4 $w_dir/$gifname.mp4
   fi
-
+  
   cp "$w_dir/$gifname.mp4" "/home/$myUserName/Pictures/$gifname.mp4"
 fi
