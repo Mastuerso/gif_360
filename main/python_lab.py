@@ -7,7 +7,7 @@ import subprocess
 #ser = serial.Serial('/dev/ttyUSB0', baudrate = 9600, timeout = .1)
 #ser.flushInput()
 #time.sleep(2)
-#ARGS = len(sys.argv)
+ARGS = len(sys.argv)
 #loop=1
 
 #while loop:
@@ -29,14 +29,14 @@ import subprocess
 #    arduinoData = ser.readline().decode('ascii')
 #    return arduinoData
 
-cmd = [ 'bash', 'cam_setup.sh' ]
-dummyRes = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+#cmd = [ 'bash', 'cam_setup.sh' ]
+#dummyRes = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 #dummyRes = dummyRes.rstrip("\n\r")
-print("Message received: \n" + dummyRes)
+#print("Message received: \n" + dummyRes)
 
-cmd = [ 'bash', 'take_pics.sh', dummyRes ]
+#cmd = [ 'bash', 'take_pics.sh', dummyRes ]
 #dummyRes2 = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
-subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+#subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 #dummyRes = dummyRes.rstrip("\n\r")
 
 #print("Message received 2: \n" + dummyRes2)
@@ -49,10 +49,8 @@ subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 #        print(getValuesY())
 #    else:
 #        print(getValuesN())
-
-
-#print "This is the name of the script: ", sys.argv[0]
-#print "This is the argument passed: ", sys.argv[1]
+print "This is the name of the script: ", sys.argv[0]
+print "This is the argument passed: ", sys.argv[1]
 #print "Number of arguments: ", len(sys.argv)
 #print "The arguments are: " , str(sys.argv)
 
