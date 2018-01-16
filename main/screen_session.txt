@@ -1,3 +1,0 @@
-There is a screen on:
-	919..OnikomGM	(14/11/17 15:00:39)	(Detached)
-1 Socket in /var/run/screen/S-onikom.
