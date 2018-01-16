@@ -17,8 +17,7 @@ QUALITY=${QUALITY:8}
 GIFDONE=$(bash "$dir/file_exist.sh" "$w_dir" "mp4")
 
 if [[ $GIFDONE -ne 1 ]]; then
-  #insert calibration script here 
-  #read and apply rotation
+  #apply calibration params
   bash backImg.sh "$w_dir"  
   bash net_gif.sh "$w_dir" "$gifname"
   if [ $QUALITY -lt $((100)) ]; then

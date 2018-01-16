@@ -10,4 +10,5 @@ mailto=antonio.credoz@gmail.com
 watermark=0
 wmark=
 fb_post=0
+calibrated=0
 .
