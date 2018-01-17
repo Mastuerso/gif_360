@@ -26,6 +26,7 @@ time.sleep(4)
 
 cmd = [ 'bash', 'take_pics.sh', cameras ]
 save_cmd = [ 'bash', 'save_pics.sh', cameras ]
+calib_cmd = [ 'bash', 'auto_config.sh', cameras ]
 
 print("\n===READY===")
 
@@ -42,6 +43,9 @@ while 1:
             #print("freeze gif ...")
             serialArduino.write(b'f')
             #time.sleep(1)
+        elif compare(gifType, "calibration"):
+            subprocess.Popen(calib_cmd, stdout=subprocess.PIPE).communicate()[0]
+            serialArduino.write(b'f')
         #RECOVER PICS
         #UPDATE CHORE.LIST
         #var = raw_input("Proceed: ")

@@ -27,13 +27,13 @@ if [[ $GIFDONE -ne 1 ]]; then
 
   echo $gifname.mp4 > $w_dir/gif_name.txt
 
-  echo '====================MP4============================'
+  echo '====================MP4============================' 1>&2
 
   ffmpeg -framerate $FPS -pattern_type glob -i "$w_dir/images/*.JPG" -c:v libx264 -pix_fmt yuv420p "$w_dir/$gifname.mp4"
   #ffmpeg -framerate $FPS -start_number $((11)) -i $w_dir/images/image-%d.JPG -c:v libx264 -pix_fmt yuv420p "$w_dir/$gifname.mp4"
 
   if [ $put_MARK -eq $((1)) ]; then
-      echo '===================WATERMARK================================'
+      echo '===================WATERMARK================================' 1>&2
       #echo $MARK
       ffmpeg -i $w_dir/$gifname.mp4 -i $MARK -filter_complex "overlay=x=(main_w-overlay_w)/2:y=(main_h-overlay_h)/2" -c:v libx264 -pix_fmt yuv420p $w_dir/b$gifname.mp4
       rm $w_dir/$gifname.mp4
