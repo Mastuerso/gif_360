@@ -18,7 +18,7 @@ GIFDONE=$(bash "$dir/file_exist.sh" "$w_dir" "mp4")
 
 if [[ $GIFDONE -ne 1 ]]; then
   #apply calibration params
-  bash backImg.sh "$w_dir"  
+  bash backImg.sh "$w_dir"
   bash net_gif.sh "$w_dir" "$gifname"
   if [ $QUALITY -lt $((100)) ]; then
       mogrify -resize $QUALITY"%" $w_dir/images/*.JPG
