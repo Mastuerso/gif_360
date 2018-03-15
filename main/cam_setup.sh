@@ -35,8 +35,10 @@ if [[ $CAMERAS -gt 0 ]]; then
       if [ "$camera_capture_target" != "Memory card" ]; then
           gphoto2 ${line} --set-config capturetarget=1
       fi
+      #DATE = COMPUTER'S DATE
+      gphoto2 ${line} --set-config datetime=now
       #CLEAN SD
-      gphoto2 ${line} gphoto2 $line --delete-all-files --folder=/store_00020001/DCIM/100CANON
+      gphoto2 ${line} --delete-all-files --folder=/store_00020001/DCIM/100CANON
       #CAMERAS NUMBER
       camera_number=$(gphoto2 ${line} --get-config=ownername | grep Current:)
       camera_number=${camera_number:12}

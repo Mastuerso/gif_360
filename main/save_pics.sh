@@ -28,6 +28,8 @@ done <<< "${INPUT}"
 
 #CHECK IMGs HERE
 thisDir=$(bash $dir/file_check.sh $gif_dir/images JPG $INDEX)
+#IS CALIBRATED?
+calibrated=$(bash $dir/lookup.sh calibrated gif_settings.txt)
 
 COUNT=$((0))
 while read -r line; do
@@ -38,6 +40,17 @@ while read -r line; do
 done <<< "${INPUT}"
 
 if [ "$thisDir" == "valid dir" ]; then
-    bash "$dir/do_video.sh" "$gif_dir"
-    echo "$gif_dir" >> chore.list
+    if [[ $calibrated -eq $((1)) ]]; then
+        bash "$dir/do_video.sh" "$gif_dir"
+        echo "$gif_dir" >> chore.list
+    else
+        echo "Calculating calibration parameters ..." 1>&2
+        #INSERT HERE OPENCV SCRIPT << after this script finish it has to modify gif_settings.txt
+        #and set calibrated=1
+        calibrated=$(bash $dir/lookup.sh calibrated gif_settings.txt)
+        if [[ $calibrated -eq $((1)) ]]; then
+            echo "Success" 1>&2
+            #Applying sessions settings
+            bash "$dir/auto_config.sh" $INPUT
+        fi        
 fi
