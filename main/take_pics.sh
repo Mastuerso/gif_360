@@ -3,8 +3,7 @@ INPUT=$1
 #echo "$INPUT" 1>&2
 COUNT=$((0))
 dir=$(pwd)
-DELAY=$(sed '7q;d' "$dir/gif_settings.txt")
-DELAY=${DELAY:8}
+DELAY=$(bash "$dir/lookup.sh" "cam_delay" "$dir/gif_settings.txt")
 DELAY=$(bc <<< "scale=3;$DELAY/$((1000))")
 #echo "$DELAY" 1>&2
 #Number of lines

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import serial
 import sys
+import os
 import subprocess
 import time
 
@@ -17,9 +18,15 @@ def gifSelected():
     selection = selection.rstrip("\r\n")
     return selection
 
+existence=os.path.isfile("trigger.flag")
+if not existence:
+    f=open("trigger.flag","w+")
+    f.close()
+
 cmd = [ 'bash', 'cam_setup.sh' ]
 cameras = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
 
+time.sleep(4)
 serialArduino = serial.Serial('/dev/ttyACM0', baudrate = 9600, timeout = .1)
 serialArduino.flushInput()
 time.sleep(4)
@@ -32,6 +39,18 @@ print("\n===READY===")
 
 while 1:
     value = serialArduino.readline().rstrip()
+    #Read the file "trigger.flag" to shoot from the computer
+    f=open("trigger.flag","r")
+    content = f.read()
+    f.close()
+
+    if "1" in content:
+        f=open("trigger.flag","w")
+        f.close()
+        serialArduino.write(b'f')
+        time.sleep(1)
+        subprocess.Popen(save_cmd, stdout=subprocess.PIPE).communicate()[0]
+
     if value == "trigger":
         #print("triggered")
         print("\n===WAIT===")
@@ -42,10 +61,9 @@ while 1:
         elif compare(gifType, "freeze"):
             #print("freeze gif ...")
             serialArduino.write(b'f')
-            #time.sleep(1)
+            time.sleep(1)
         elif compare(gifType, "calibration"):
             subprocess.Popen(calib_cmd, stdout=subprocess.PIPE).communicate()[0]
-            serialArduino.write(b'f')
         #RECOVER PICS
         #UPDATE CHORE.LIST
         #var = raw_input("Proceed: ")

@@ -1,0 +1,11 @@
+Label: ISO Speed
+Type: RADIO
+Current: 3200
+Choice: 0 Auto
+Choice: 1 100
+Choice: 2 200
+Choice: 3 400
+Choice: 4 800
+Choice: 5 1600
+Choice: 6 3200
+Choice: 7 6400

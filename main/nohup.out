@@ -1,0 +1,75 @@
+8 cameras detected
+Traceback (most recent call last):
+  File "/home/onikom/gif_360/main/capture.py", line 21, in <module>
+    cameras = subprocess.Popen(cmd, stdout=subprocess.PIPE).communicate()[0]
+  File "/usr/lib/python2.7/subprocess.py", line 792, in communicate
+Operation cancelled.
+    stdout = _eintr_retry_call(self.stdout.read)
+  File "/usr/lib/python2.7/subprocess.py", line 476, in _eintr_retry_call
+    return func(*args)
+KeyboardInterrupt
+camera 8 is at PORT: \n--port=usb:002,013
+camera 7 is at PORT: \n--port=usb:002,012
+camera 5 is at PORT: \n--port=usb:002,011
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+camera  is at PORT: \n--port=usb:002,010
+camera 3 is at PORT: \n--port=usb:002,008
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+
+*** Error ***              
+An error occurred in the io-library ('Could not claim the USB device'): Could not claim interface 0 (Device or resource busy). Make sure no other program (gvfs-gphoto2-volume-monitor) or kernel module (such as sdc2xx, stv680, spca50x) is using the device and you have read/write access to the device.
+*** Error (-53: 'Could not claim the USB device') ***       
+
+camera  is at PORT: \n--port=usb:002,007
+camera 1 is at PORT: \n--port=usb:002,006
+camera 4 is at PORT: \n--port=usb:002,005
+cam_setup.sh: line 56: echo: write error: Broken pipe
+
+(/usr/lib/firefox/firefox:11134): dconf-WARNING **: Unable to open /var/lib/snapd/desktop/dconf/profile/user: Permission denied
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 11134, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-bfYN6l/firefox-57.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+[GFX1-]: Receive IPC close with reason=AbnormalShutdown
+[Child 10986, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /build/firefox-bfYN6l/firefox-57.0.1+build2/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353

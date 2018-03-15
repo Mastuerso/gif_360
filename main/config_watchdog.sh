@@ -1,8 +1,8 @@
 #!/bin/bash
 dir=$(pwd)
-file="$dir/chore.list"
+file="$dir/camera.config"
 while true; do
     inotifywait -qe modify $file >/dev/null
     echo "$file changed" 1>&2
-    bash $dir/create_share.sh
+    python "$dir/setConfig.py"
 done

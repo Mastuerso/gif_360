@@ -21,7 +21,7 @@ while [ $loop -eq $((1)) ]; do
 		#echo "count: $COUNT" 1>&2
         if [ $COUNT -eq $expected ]; then
 		    loop=$((0))
-            echo "invalid dir"	    
+            echo "invalid dir"
         fi
     fi
 done

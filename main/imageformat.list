@@ -1,0 +1,13 @@
+Label: Image Format
+Type: RADIO
+Current: Smaller JPEG
+Choice: 0 Large Fine JPEG
+Choice: 1 Large Normal JPEG
+Choice: 2 Medium Fine JPEG
+Choice: 3 Medium Normal JPEG
+Choice: 4 Small Fine JPEG
+Choice: 5 Small Normal JPEG
+Choice: 6 Smaller JPEG
+Choice: 7 Tiny JPEG
+Choice: 8 RAW + Large Fine JPEG
+Choice: 9 RAW

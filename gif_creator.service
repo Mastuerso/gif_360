@@ -1,5 +1,6 @@
 [Unit]
 Description=Gif Creator service
+After=network.target
 [Service]
 Type=oneshot
 User=gif

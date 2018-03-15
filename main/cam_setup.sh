@@ -1,8 +1,9 @@
 #!/bin/bash
-
+echo '===========CAM-SETUP===========' 1>&2
 CAMPORTS=''
 COUNT=$((0))
 CAM_READY=false
+dir=$(pwd)
 
 while [[ $CAM_READY != true ]]; do
   OUTPUT=$(gphoto2 --auto-detect)
@@ -36,9 +37,9 @@ if [[ $CAMERAS -gt 0 ]]; then
           gphoto2 ${line} --set-config capturetarget=1
       fi
       #DATE = COMPUTER'S DATE
-      gphoto2 ${line} --set-config datetime=now
+      #gphoto2 ${line} --set-config datetime=now
       #CLEAN SD
-      gphoto2 ${line} --delete-all-files --folder=/store_00020001/DCIM/100CANON
+      gphoto2 "${line}" --delete-all-files --folder=/store_00020001/DCIM/100CANON
       #CAMERAS NUMBER
       camera_number=$(gphoto2 ${line} --get-config=ownername | grep Current:)
       camera_number=${camera_number:12}
